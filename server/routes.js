@@ -30,9 +30,9 @@ Routes.getYo = function *getYo() {
   var username = this.request.query.username;
   var location = this.request.query.location;
   var lat = location.substring(0, location.indexOf(';'));
-  var lng = locatoin.substring(location.indexOf(';') + 1);
+  var lng = location.substring(location.indexOf(';') + 1);
   // parse request to get username and location
-  var link = yield Founders.get(lat,lng);
+  var link = yield Founders.get(lat, lng);
   Yo.yo_link(username, link);
 };
 

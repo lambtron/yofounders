@@ -4,6 +4,7 @@
  */
 
 var Crunchbase = require('../lib/crunchbase');
+var Pastebin = require('../lib/pastebin');
 
 /**
  * Define `Founders`.
@@ -18,7 +19,8 @@ var Founders = {};
  */
 
 Founders.get = function *get(lat, lng) {
-  return;
+  var link = yield Pastebin.new({ title: 'test', content: 'content' });
+  return link;
 };
 
 /**
