@@ -6,6 +6,7 @@
 var parse = require('co-body');
 var render = require('../lib/render');
 var Founders = require('./founders');
+var Yo = require('../lib/yo');
 
 /**
  * Define `Routes`.
