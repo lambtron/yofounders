@@ -1,5 +1,13 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-
+  <div>
+    {% for company in founders %}
+      {{ company.name }}
+      {{ company.description }}
+      {{ company.website }}
+      {{ company.founders }}
+      {{ company.logo }}
+    {% endfor %}
+  </div>
 {% endblock %}
