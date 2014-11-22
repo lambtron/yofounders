@@ -17,8 +17,8 @@ var Founders = {};
  * Return a pastebin URL to send back to end user.
  */
 
-Founders.get = function *get() {
-
+Founders.get = function *get(lat, lng) {
+  return;
 };
 
 /**
