@@ -31,14 +31,13 @@ Founders.get = function *get(lat, lng) {
   var search = thunkify(Foursquare.venues.search);
   var results = yield search(load);
   var venues = results.response.venues;
-
-  // console.log(venues);
-
-  venues.map(function(venue) {
-    console.log(venue.name);
-  });
-
-  // console.log(JSON.stringify(venues, null, 2));
+  var companies = [];
+  for (var i = 0; i < venues.length; i++) {
+    var company = yield Crunchbase.organization(venues[i].name);
+    if (company.data.uuid && !company.data.properties.is_closed)
+      companies.push(company);
+  }
+  // Now need to format it to text.
 
   // var link = yield Pastebin.new({ title: 'test', content: 'content' });
   var link = '';
