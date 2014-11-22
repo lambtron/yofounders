@@ -5,6 +5,7 @@
 
 var parse = require('co-body');
 var render = require('../lib/render');
+var Founders = require('./founders');
 
 /**
  * Define `Routes`.
@@ -25,7 +26,9 @@ Routes.index = function *index() {
  */
 
 Routes.getYo = function *getYo() {
-  // username and location
+  // parse request to get username and location
+  // var link = yield Founders.get();
+  // send POST to YO endpoint
 };
 
 /**
