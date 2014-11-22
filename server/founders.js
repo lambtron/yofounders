@@ -7,6 +7,7 @@ var Crunchbase = require('../lib/crunchbase');
 var Foursquare = require('../lib/foursquare');
 var Pastebin = require('../lib/pastebin');
 var thunkify = require('thunkify-wrap');
+var urlencode = require('urlencode');
 
 /**
  * Define `Founders`.
@@ -50,7 +51,7 @@ Founders.get = function *get(lat, lng) {
 module.exports = Founders;
 
 /**
- * Build query string.
+ * Private function to build query string.
  *
  * @param {Object} company
  */
@@ -76,5 +77,6 @@ function buildQueryString(companies) {
     }
   }
   qs = qs.slice(0, -1);
+  qs = urlencode(qs);
   return qs;
 }

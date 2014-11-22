@@ -26,6 +26,7 @@
     "pastebin": "0.0.1",
     "swig": "^1.4.2",
     "thunkify-wrap": "^1.0.4",
+    "urlencode": "^0.2.0",
     "yo-api": "^1.0.0"
   }
 }
