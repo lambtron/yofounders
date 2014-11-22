@@ -4,6 +4,7 @@
  */
 
 var Crunchbase = require('../lib/crunchbase');
+var Foursquare = require('../lib/foursquare');
 var Pastebin = require('../lib/pastebin');
 
 /**

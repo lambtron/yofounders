@@ -22,6 +22,7 @@
     "koa-bodyparser": "^1.2.0",
     "koa-logger": "^1.2.2",
     "koa-route": "^2.2.0",
+    "node-foursquare-venues": "^0.3.1",
     "pastebin": "0.0.1",
     "swig": "^1.4.2",
     "thunkify-wrap": "^1.0.4",
