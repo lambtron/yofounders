@@ -38,7 +38,7 @@ Founders.get = function *get(lat, lng) {
     if (company.data.uuid && !company.data.properties.is_closed)
       companies.push(company.data);
   }
-  var link = 'localhost:3000/' + buildQueryString(companies);
+  var link = 'localhost:3000/founders/' + buildQueryString(companies);
 
   console.log(link);
   return link;
@@ -65,18 +65,17 @@ function buildQueryString(companies) {
     });
     founders = founders.join(',');
     var qsObj = {
-      name: company.properties.name,
-      description: company.properties.short_description,
-      website: company.properties.homepage_url,
-      founders: founders,
-      logo: 'http://www.crunchbase.com/organization/'
-        + company.properties.permalink + '/primary-image/raw'
+      name: urlencode(company.properties.name),
+      description: urlencode(company.properties.short_description),
+      website: urlencode(company.properties.homepage_url),
+      founders: urlencode(founders),
+      logo: urlencode('http://www.crunchbase.com/organization/'
+        + company.properties.permalink + '/primary-image/raw')
     };
     for (var prop in qsObj) {
       qs += prop + i + '=' + qsObj[prop] + '&';
     }
   }
   qs = qs.slice(0, -1);
-  qs = urlencode(qs);
   return qs;
 }

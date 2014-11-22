@@ -42,6 +42,15 @@ Routes.getYo = function *getYo() {
 Routes.showFounders = function *showFounders() {
   var founders = [];
   var query = this.request.query;
+  for (var prop in query) {
+    var i = prop.charAt(prop.length - 1);
+    var p = prop.slice(0, -1);
+    var founder = founders[i];
+    if (!founder)
+      var founder = {};
+    founder[p] = query[prop];
+    founders[i] = founder;
+  }
   this.body = yield render('founders', { founders: founders });
 };
 
