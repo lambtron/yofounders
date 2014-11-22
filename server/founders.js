@@ -35,12 +35,11 @@ Founders.get = function *get(lat, lng) {
   for (var i = 0; i < venues.length; i++) {
     var company = yield Crunchbase.organization(venues[i].name);
     if (company.data.uuid && !company.data.properties.is_closed)
-      companies.push(company);
+      companies.push(company.data);
   }
-  // Now need to format it to text.
+  var link = 'localhost:3000/' + buildQueryString(companies);
 
-  // var link = yield Pastebin.new({ title: 'test', content: 'content' });
-  var link = '';
+  console.log(link);
   return link;
 };
 
@@ -49,3 +48,33 @@ Founders.get = function *get(lat, lng) {
  */
 
 module.exports = Founders;
+
+/**
+ * Build query string.
+ *
+ * @param {Object} company
+ */
+
+function buildQueryString(companies) {
+  var qs = '?';
+  for (var i = 0; i < companies.length; i++) {
+    var company = companies[i];
+    var founders = company.relationships.founders.items.map(function(founder) {
+      return founder.name;
+    });
+    founders = founders.join(',');
+    var qsObj = {
+      name: company.properties.name,
+      description: company.properties.short_description,
+      website: company.properties.homepage_url,
+      founders: founders,
+      logo: 'http://www.crunchbase.com/organization/'
+        + company.properties.permalink + '/primary-image/raw'
+    };
+    for (var prop in qsObj) {
+      qs += prop + i + '=' + qsObj[prop] + '&';
+    }
+  }
+  qs = qs.slice(0, -1);
+  return qs;
+}

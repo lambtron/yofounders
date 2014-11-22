@@ -36,6 +36,16 @@ Routes.getYo = function *getYo() {
 };
 
 /**
+ * Show founders.
+ */
+
+Routes.showFounders = function *showFounders() {
+  var founders = [];
+  var query = this.request.query;
+  this.body = yield render('founders', { founders: founders });
+};
+
+/**
  * Expose `Routes`.
  */
 
