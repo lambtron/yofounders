@@ -1,4 +1,4 @@
 Yo Founders
 ==========
 
-Get the founders information at the startups in your location.
+Get the founders information.
