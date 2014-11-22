@@ -21,21 +21,27 @@ var Founders = {};
  */
 
 Founders.get = function *get(lat, lng) {
-  console.log('hi');
   var load = {
     v: '20141122',
     ll: lat + ',' + lng,
-    query: 'startup',
-    radius: 400,
-    intent: 'checkin'
+    categoryId: '4bf58dd8d48988d124941735',
+    radius: 15,
+    intent: 'browse'
   };
   var search = thunkify(Foursquare.venues.search);
   var results = yield search(load);
   var venues = results.response.venues;
 
-  console.log(venues);
+  // console.log(venues);
+
+  venues.map(function(venue) {
+    console.log(venue.name);
+  });
+
+  // console.log(JSON.stringify(venues, null, 2));
 
   // var link = yield Pastebin.new({ title: 'test', content: 'content' });
+  var link = '';
   return link;
 };
 
