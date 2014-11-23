@@ -33,7 +33,7 @@ Routes.getYo = function *getYo() {
   var lng = location.substring(location.indexOf(';') + 1);
   var link = yield Founders.get(lat, lng);
   Yo.yo_link(username, link);
-  // this.body = 'OK';
+  this.body = 'OK';
 };
 
 /**

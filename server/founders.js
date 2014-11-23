@@ -8,6 +8,7 @@ var Foursquare = require('../lib/foursquare');
 var Distance = require('../lib/distance');
 var thunkify = require('thunkify-wrap');
 var urlencode = require('urlencode');
+var Bitly = require('../lib/bitly');
 
 /**
  * Define `Founders`.
@@ -49,8 +50,7 @@ Founders.get = function *get(lat, lng) {
   }
   var link = 'http://yofounders.herokuapp.com/founders/'
              + buildQueryString(companies);
-  console.log(link);
-  return link;
+  return yield Bitly.shortenLink(link);
 };
 
 /**
