@@ -1,16 +1,55 @@
 {% extends 'layout.html' %}
 
 {% block content %}
+  <style>
+    .grey {
+      color: #A8A8A8;
+    }
+    .dark-grey {
+      color: #6B6B6B;
+    }
+    .description {
+      font-size: 1.1em;
+      font-weight: 100;
+    }
+  </style>
   <div>
     {% for company in founders %}
-      {{ company.name }}
-      {{ company.description }}
-      {{ company.website }}
-      {% for founder in company.founders %}
-        {{ founder.name }}
-        {{ founder.email }}
-      {% endfor %}
-      {{ company.logo }}
+      <div style="margin: 40px 0px 30px 0px">
+        <div class="row">
+          <div style="height: 100px; width: 100px; display: inline-block" class="col-xs-2">
+            <a href="{{ company.website }}"><img src="{{ company.logo }}" width=100/></a>
+          </div>
+          <span class="col-xs-8 dark-grey" style="padding-right: 0px">
+            <p class="description" style="margin-top: 0px; padding: 0px 15px 0px 15px">{{ company.description }}</p>
+          </span>
+        </div>
+        <div class="row" style="margin: 0px">
+          <!-- <h1 style="margin-top: 0px">
+            {{ company.name }}
+          </h1> -->
+          <p>
+            <span class="dark-grey">
+              {{ company.address }}
+            </span>
+            <br>
+            <span class="grey">
+              {{ company.distance }} away
+            </span>
+          </p>
+          <p>
+            <a href="{{ company.website }}">{{ company.website }}</a>
+          </p>
+          <ul style="list-style: none; padding: 0px;">
+            {% for founder in company.founders %}
+              <li class="dark-grey">
+                {{ founder.name }}, <a href="mailto:{{ founder.email }}">{{ founder.email }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <hr>
     {% endfor %}
   </div>
 {% endblock %}
