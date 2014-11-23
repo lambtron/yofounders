@@ -58,6 +58,7 @@ Routes.showFounders = function *showFounders() {
       });
     }
   }
+  if (founders.length === 0) return this.body = yield render('404');
   this.body = yield render('founders', { founders: founders });
 };
 
