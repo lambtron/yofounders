@@ -5,6 +5,7 @@
 
 var Crunchbase = require('../lib/crunchbase');
 var Foursquare = require('../lib/foursquare');
+var Distance = require('../lib/distance');
 var thunkify = require('thunkify-wrap');
 var urlencode = require('urlencode');
 
@@ -49,7 +50,7 @@ module.exports = Founders;
 /**
  * Private function to build query string.
  *
- * @param {Object} company
+ * @param {Object} companies
  */
 
 function buildQueryString(companies) {
@@ -58,8 +59,9 @@ function buildQueryString(companies) {
     var company = companies[i];
     var founders = company.relationships.founders.items.map(function(founder) {
       var domain = getDomain(company.properties.homepage_url);
-      var email = founder.name.split(' ')[0] + '@'
-        + domain.substring(domain.indexOf('www') + 4);
+      var s = 0;
+      if (~domain.indexOf('www')) s = domain.indexOf('www') + 4;
+      var email = founder.name.split(' ')[0] + '@' + domain.substring(s);
       return JSON.stringify({ name: founder.name, email: email });
     });
     founders = founders.join(',');
