@@ -26,7 +26,7 @@ Founders.get = function *get(lat, lng) {
     v: '20141122',
     ll: lat + ',' + lng,
     categoryId: '4bf58dd8d48988d124941735',
-    radius: 25,
+    radius: 20,
     intent: 'browse'
   };
   var search = thunkify(Foursquare.venues.search);
@@ -68,6 +68,7 @@ module.exports = Founders;
 function buildQueryString(companies) {
   var qs = '?';
   for (var i = 0; i < companies.length; i++) {
+    var c = '';
     var company = companies[i];
     if (!company.relationships.founders) continue;
     if (!company.properties.homepage_url
@@ -91,8 +92,10 @@ function buildQueryString(companies) {
       address: urlencode(company.location.address)
     };
     for (var prop in qsObj) {
-      qs += prop + i + '=' + qsObj[prop] + '&';
+      c += prop + i + '=' + qsObj[prop] + '&';
     }
+    if (qs.length + c.length > 2000) break;
+    qs += c;
   }
   qs = qs.slice(0, -1);
   return qs;
