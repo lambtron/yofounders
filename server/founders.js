@@ -19,7 +19,7 @@ var Founders = {};
 /**
  * Get information about the founders.
  *
- * Return a pastebin URL to send back to end user.
+ * Return a Bitly link to send back to end user.
  */
 
 Founders.get = function *get(lat, lng) {
