@@ -61,7 +61,10 @@ function buildQueryString(companies) {
   for (var i = 0; i < companies.length; i++) {
     var company = companies[i];
     var founders = company.relationships.founders.items.map(function(founder) {
-      return founder.name;
+      var domain = company.properties.homepage_url;
+      var email = founder.name.split(' ')[0] + '@'
+        + domain.substring(domain.indexOf('www') + 4);
+      return JSON.stringify({ name: founder.name, email: email });
     });
     founders = founders.join(',');
     var qsObj = {
