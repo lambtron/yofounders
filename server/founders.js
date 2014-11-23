@@ -35,8 +35,18 @@ Founders.get = function *get(lat, lng) {
   var companies = [];
   for (var i = 0; i < venues.length; i++) {
     var company = yield Crunchbase.organization(venues[i].name);
-    if (company.data.uuid && !company.data.properties.is_closed)
+    if (company.data.uuid && !company.data.properties.is_closed) {
+      var origin = [lat + ',' + lng];
+      var destination = [venues[i].location.lat + ',' + venues[i].location.lng];
+      Distance.units('imperial');
+      var distance = yield Distance.matrix(origin, destination);
+      company.data.location = {};
+      if (distance.status === 'OK')
+        company.data.location.distance = distance.rows[0].elements[0].distance.text;
+      company.data.location.address = venues[i].location.address;
+      console.log(company.data);
       companies.push(company.data);
+    }
   }
   return 'localhost:3000/founders/' + buildQueryString(companies);
 };
