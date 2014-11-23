@@ -49,6 +49,7 @@ Founders.get = function *get(lat, lng) {
   }
   var link = 'http://yofounders.herokuapp.com/founders/'
              + buildQueryString(companies);
+  console.log(link);
   return link;
 };
 
