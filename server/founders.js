@@ -68,6 +68,8 @@ function buildQueryString(companies) {
   for (var i = 0; i < companies.length; i++) {
     var company = companies[i];
     if (!company.relationships.founders) continue;
+    if (!company.properties.homepage_url
+      || company.properties.homepage_url.length === 0) continue;
     var founders = company.relationships.founders.items.map(function(founder) {
       var domain = getDomain(company.properties.homepage_url);
       var s = 0;
