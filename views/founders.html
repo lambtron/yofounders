@@ -31,7 +31,9 @@
             </span>
             <br>
             <span class="grey">
-              {{ company.distance }} away
+              {% if company.distance %}
+                {{ company.distance }} away
+              {% endif %}
             </span>
           </p>
           <p>
