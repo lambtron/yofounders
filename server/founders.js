@@ -5,7 +5,6 @@
 
 var Crunchbase = require('../lib/crunchbase');
 var Foursquare = require('../lib/foursquare');
-var Pastebin = require('../lib/pastebin');
 var thunkify = require('thunkify-wrap');
 var urlencode = require('urlencode');
 
