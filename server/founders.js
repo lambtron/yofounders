@@ -38,10 +38,7 @@ Founders.get = function *get(lat, lng) {
     if (company.data.uuid && !company.data.properties.is_closed)
       companies.push(company.data);
   }
-  var link = 'localhost:3000/founders/' + buildQueryString(companies);
-
-  console.log(link);
-  return link;
+  return 'localhost:3000/founders/' + buildQueryString(companies);
 };
 
 /**
@@ -61,7 +58,7 @@ function buildQueryString(companies) {
   for (var i = 0; i < companies.length; i++) {
     var company = companies[i];
     var founders = company.relationships.founders.items.map(function(founder) {
-      var domain = company.properties.homepage_url;
+      var domain = getDomain(company.properties.homepage_url);
       var email = founder.name.split(' ')[0] + '@'
         + domain.substring(domain.indexOf('www') + 4);
       return JSON.stringify({ name: founder.name, email: email });
@@ -70,7 +67,7 @@ function buildQueryString(companies) {
     var qsObj = {
       name: urlencode(company.properties.name),
       description: urlencode(company.properties.short_description),
-      website: urlencode(company.properties.homepage_url),
+      website: urlencode(getDomain(company.properties.homepage_url)),
       founders: urlencode(founders),
       logo: urlencode('http://www.crunchbase.com/organization/'
         + company.properties.permalink + '/primary-image/raw')
@@ -81,4 +78,19 @@ function buildQueryString(companies) {
   }
   qs = qs.slice(0, -1);
   return qs;
+}
+
+/**
+ * Private function to remove http and trailing '/' from url.
+ *
+ * @param {String} url
+ *
+ * @return {String}
+ */
+
+function getDomain(url) {
+  var host = url.replace('http://', '');
+  host = host.replace('https://', '');
+  if (host.charAt(host.length - 1) === '/') host = host.slice(0, -1);
+  return host;
 }

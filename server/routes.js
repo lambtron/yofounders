@@ -58,9 +58,6 @@ Routes.showFounders = function *showFounders() {
       });
     }
   }
-
-  console.log(founders);
-
   this.body = yield render('founders', { founders: founders });
 };
 
