@@ -47,8 +47,8 @@ Founders.get = function *get(lat, lng) {
       companies.push(company.data);
     }
   }
-  var link = 'localhost:3000/founders/' + buildQueryString(companies);
-  return link;
+  return 'http://yofounders.herokuapp.com/founders/'
+    + buildQueryString(companies);
 };
 
 /**
