@@ -26,7 +26,7 @@ Founders.get = function *get(lat, lng) {
     v: '20141122',
     ll: lat + ',' + lng,
     categoryId: '4bf58dd8d48988d124941735',
-    radius: 50,
+    radius: 15,
     intent: 'browse'
   };
   var search = thunkify(Foursquare.venues.search);
