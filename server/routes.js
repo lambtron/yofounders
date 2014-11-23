@@ -31,8 +31,9 @@ Routes.getYo = function *getYo() {
   var location = this.request.query.location;
   var lat = location.substring(0, location.indexOf(';'));
   var lng = location.substring(location.indexOf(';') + 1);
-  var link = yield Founders.get(lat, lng);
-  Yo.yo_link(username, link.url);
+  var linkStr = yield Founders.get(lat, lng);
+  var link = JSON.parse(linkStr);
+  Yo.yo_link(username, link.data.url);
   this.body = 'OK';
 };
 
