@@ -44,11 +44,11 @@ Founders.get = function *get(lat, lng) {
       if (distance.status === 'OK')
         company.data.location.distance = distance.rows[0].elements[0].distance.text;
       company.data.location.address = venues[i].location.address;
-      console.log(company.data);
       companies.push(company.data);
     }
   }
-  return 'localhost:3000/founders/' + buildQueryString(companies);
+  var link = 'localhost:3000/founders/' + buildQueryString(companies);
+  return link;
 };
 
 /**
