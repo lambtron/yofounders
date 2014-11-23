@@ -81,7 +81,9 @@ function buildQueryString(companies) {
       website: urlencode(getDomain(company.properties.homepage_url)),
       founders: urlencode(founders),
       logo: urlencode('http://www.crunchbase.com/organization/'
-        + company.properties.permalink + '/primary-image/raw')
+        + company.properties.permalink + '/primary-image/raw'),
+      distance: urlencode(company.location.distance),
+      address: urlencode(company.location.address)
     };
     for (var prop in qsObj) {
       qs += prop + i + '=' + qsObj[prop] + '&';
