@@ -18,7 +18,7 @@
       <div style="margin: 40px 0px 30px 0px">
         <div class="row">
           <div style="height: 100px; width: 100px; display: inline-block" class="col-xs-2">
-            <a href="{{ company.website }}"><img src="{{ company.logo }}" width=100/></a>
+            <a href="http://{{ company.website }}"><img src="{{ company.logo }}" width=100/></a>
           </div>
           <span class="col-xs-8 dark-grey" style="padding-right: 0px">
             <p class="description" style="margin-top: 0px; padding: 0px 15px 0px 15px">{{ company.description }}</p>
@@ -35,7 +35,7 @@
             </span>
           </p>
           <p>
-            <a href="{{ company.website }}">{{ company.website }}</a>
+            <a href="http://{{ company.website }}">{{ company.website }}</a>
           </p>
           <ul style="list-style: none; padding: 0px;">
             {% for founder in company.founders %}
