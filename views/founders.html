@@ -6,7 +6,9 @@
       {{ company.name }}
       {{ company.description }}
       {{ company.website }}
-      {{ company.founders }}
+      {% for founder in company.founders %}
+        {{ founder }}
+      {% endfor %}
       {{ company.logo }}
     {% endfor %}
   </div>

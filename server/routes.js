@@ -50,6 +50,7 @@ Routes.showFounders = function *showFounders() {
       var founder = {};
     founder[p] = query[prop];
     founders[i] = founder;
+    if (~p.indexOf('founder')) founder[p] = query[prop].split(',');
   }
   this.body = yield render('founders', { founders: founders });
 };
