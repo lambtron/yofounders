@@ -39,7 +39,6 @@ Founders.get = function *get(lat, lng) {
     if (company.data.uuid && !company.data.properties.is_closed) {
       var origin = [lat + ',' + lng];
       var destination = [venues[i].location.lat + ',' + venues[i].location.lng];
-      Distance.units('imperial');
       var distance = yield Distance.matrix(origin, destination);
       company.data.location = {};
       if (distance.status === 'OK')
